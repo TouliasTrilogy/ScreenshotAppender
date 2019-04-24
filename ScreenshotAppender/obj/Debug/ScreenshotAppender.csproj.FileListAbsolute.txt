@@ -1,0 +1,10 @@
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\bin\Debug\ScreenshotAppender.exe.config
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\bin\Debug\ScreenshotAppender.exe
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\bin\Debug\ScreenshotAppender.pdb
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\obj\Debug\ScreenshotAppender.csprojAssemblyReference.cache
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\obj\Debug\ScreenshotAppender.Form1.resources
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\obj\Debug\ScreenshotAppender.Properties.Resources.resources
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\obj\Debug\ScreenshotAppender.csproj.GenerateResource.cache
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\obj\Debug\ScreenshotAppender.csproj.CoreCompileInputs.cache
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\obj\Debug\ScreenshotAppender.exe
+C:\Users\vassi\Documents\Visual Studio 2019\ScreenshotAppender\ScreenshotAppender\obj\Debug\ScreenshotAppender.pdb
