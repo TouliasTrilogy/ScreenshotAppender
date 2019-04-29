@@ -42,7 +42,6 @@
 			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.Enabled_checkBox = new System.Windows.Forms.CheckBox();
 			this.ClearWhenPasteCtrlV_checkBox = new System.Windows.Forms.CheckBox();
-			this.ClearWhenExit_checkBox = new System.Windows.Forms.CheckBox();
 			this.CaptureKeys_comboBox = new System.Windows.Forms.ComboBox();
 			this.CaptureCtrl_checkBox = new System.Windows.Forms.CheckBox();
 			this.CaptureAlt_checkBox = new System.Windows.Forms.CheckBox();
@@ -54,10 +53,8 @@
 			this.ClearWhenPasteShiftIns_checkBox = new System.Windows.Forms.CheckBox();
 			this.ComposeVertically_radioButton = new System.Windows.Forms.RadioButton();
 			this.ComposeHorizontally_radioButton = new System.Windows.Forms.RadioButton();
-			this.ClearWhenPasteCustom_checkBox = new System.Windows.Forms.CheckBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.InternalClipboard_checkBox = new System.Windows.Forms.CheckBox();
 			this.PasteKeys_comboBox = new System.Windows.Forms.ComboBox();
 			this.PasteAlt_checkBox = new System.Windows.Forms.CheckBox();
 			this.PasteCtrl_checkBox = new System.Windows.Forms.CheckBox();
@@ -70,8 +67,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.StackSize_numericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.Stack_checkBox = new System.Windows.Forms.CheckBox();
-			this.ClearClipboard_button = new System.Windows.Forms.Button();
 			this.SaveClipboard_button = new System.Windows.Forms.Button();
+			this.ClearClipboard_button = new System.Windows.Forms.Button();
 			this.contextMenuStrip.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -177,23 +174,10 @@
 			this.ClearWhenPasteCtrlV_checkBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.ClearWhenPasteCtrlV_checkBox.Location = new System.Drawing.Point(15, 65);
 			this.ClearWhenPasteCtrlV_checkBox.Name = "ClearWhenPasteCtrlV_checkBox";
-			this.ClearWhenPasteCtrlV_checkBox.Size = new System.Drawing.Size(204, 17);
+			this.ClearWhenPasteCtrlV_checkBox.Size = new System.Drawing.Size(240, 17);
 			this.ClearWhenPasteCtrlV_checkBox.TabIndex = 2;
-			this.ClearWhenPasteCtrlV_checkBox.Text = "Clear clipboard when paste with Ctrl+V";
+			this.ClearWhenPasteCtrlV_checkBox.Text = "Clear collected images when paste with Ctrl+V";
 			this.ClearWhenPasteCtrlV_checkBox.UseVisualStyleBackColor = true;
-			// 
-			// ClearWhenExit_checkBox
-			// 
-			this.ClearWhenExit_checkBox.AutoSize = true;
-			this.ClearWhenExit_checkBox.Checked = true;
-			this.ClearWhenExit_checkBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.ClearWhenExit_checkBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.ClearWhenExit_checkBox.Location = new System.Drawing.Point(15, 111);
-			this.ClearWhenExit_checkBox.Name = "ClearWhenExit_checkBox";
-			this.ClearWhenExit_checkBox.Size = new System.Drawing.Size(256, 17);
-			this.ClearWhenExit_checkBox.TabIndex = 4;
-			this.ClearWhenExit_checkBox.Text = "Clear clipboard when close Screenshot Appender";
-			this.ClearWhenExit_checkBox.UseVisualStyleBackColor = true;
 			// 
 			// CaptureKeys_comboBox
 			// 
@@ -255,7 +239,7 @@
 			this.CaptureOnTrayClick_checkBox.Checked = true;
 			this.CaptureOnTrayClick_checkBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.CaptureOnTrayClick_checkBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.CaptureOnTrayClick_checkBox.Location = new System.Drawing.Point(15, 134);
+			this.CaptureOnTrayClick_checkBox.Location = new System.Drawing.Point(15, 111);
 			this.CaptureOnTrayClick_checkBox.Name = "CaptureOnTrayClick_checkBox";
 			this.CaptureOnTrayClick_checkBox.Size = new System.Drawing.Size(219, 17);
 			this.CaptureOnTrayClick_checkBox.TabIndex = 5;
@@ -281,7 +265,7 @@
 			this.MultiScreen_checkBox.Checked = true;
 			this.MultiScreen_checkBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.MultiScreen_checkBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.MultiScreen_checkBox.Location = new System.Drawing.Point(15, 157);
+			this.MultiScreen_checkBox.Location = new System.Drawing.Point(15, 134);
 			this.MultiScreen_checkBox.Name = "MultiScreen_checkBox";
 			this.MultiScreen_checkBox.Size = new System.Drawing.Size(175, 17);
 			this.MultiScreen_checkBox.TabIndex = 6;
@@ -296,9 +280,9 @@
 			this.ClearWhenPasteShiftIns_checkBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.ClearWhenPasteShiftIns_checkBox.Location = new System.Drawing.Point(15, 88);
 			this.ClearWhenPasteShiftIns_checkBox.Name = "ClearWhenPasteShiftIns_checkBox";
-			this.ClearWhenPasteShiftIns_checkBox.Size = new System.Drawing.Size(217, 17);
+			this.ClearWhenPasteShiftIns_checkBox.Size = new System.Drawing.Size(253, 17);
 			this.ClearWhenPasteShiftIns_checkBox.TabIndex = 3;
-			this.ClearWhenPasteShiftIns_checkBox.Text = "Clear clipboard when paste with Shift+Ins";
+			this.ClearWhenPasteShiftIns_checkBox.Text = "Clear collected images when paste with Shift+Ins";
 			this.ClearWhenPasteShiftIns_checkBox.UseVisualStyleBackColor = true;
 			// 
 			// ComposeVertically_radioButton
@@ -327,19 +311,6 @@
 			this.ComposeHorizontally_radioButton.UseVisualStyleBackColor = true;
 			this.ComposeHorizontally_radioButton.CheckedChanged += new System.EventHandler(this.ComposeVertically_radioButton_CheckedChanged);
 			// 
-			// ClearWhenPasteCustom_checkBox
-			// 
-			this.ClearWhenPasteCustom_checkBox.AutoSize = true;
-			this.ClearWhenPasteCustom_checkBox.Checked = true;
-			this.ClearWhenPasteCustom_checkBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.ClearWhenPasteCustom_checkBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.ClearWhenPasteCustom_checkBox.Location = new System.Drawing.Point(6, 69);
-			this.ClearWhenPasteCustom_checkBox.Name = "ClearWhenPasteCustom_checkBox";
-			this.ClearWhenPasteCustom_checkBox.Size = new System.Drawing.Size(230, 17);
-			this.ClearWhenPasteCustom_checkBox.TabIndex = 5;
-			this.ClearWhenPasteCustom_checkBox.Text = "Clear clipboard when paste with custom key";
-			this.ClearWhenPasteCustom_checkBox.UseVisualStyleBackColor = true;
-			// 
 			// groupBox1
 			// 
 			this.groupBox1.Controls.Add(this.CaptureKeys_comboBox);
@@ -347,7 +318,7 @@
 			this.groupBox1.Controls.Add(this.CaptureCtrl_checkBox);
 			this.groupBox1.Controls.Add(this.CaptureShift_checkBox);
 			this.groupBox1.Controls.Add(this.PreventProcessingCaptureKey_checkBox);
-			this.groupBox1.Location = new System.Drawing.Point(15, 204);
+			this.groupBox1.Location = new System.Drawing.Point(15, 183);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(299, 70);
 			this.groupBox1.TabIndex = 9;
@@ -356,30 +327,17 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.InternalClipboard_checkBox);
 			this.groupBox2.Controls.Add(this.PasteKeys_comboBox);
 			this.groupBox2.Controls.Add(this.PasteAlt_checkBox);
 			this.groupBox2.Controls.Add(this.PasteCtrl_checkBox);
 			this.groupBox2.Controls.Add(this.PasteShift_checkBox);
 			this.groupBox2.Controls.Add(this.PreventProcessingPasteKey_checkBox);
-			this.groupBox2.Controls.Add(this.ClearWhenPasteCustom_checkBox);
-			this.groupBox2.Location = new System.Drawing.Point(15, 280);
+			this.groupBox2.Location = new System.Drawing.Point(15, 259);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(299, 118);
+			this.groupBox2.Size = new System.Drawing.Size(299, 70);
 			this.groupBox2.TabIndex = 10;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Custom paste key (experimental)";
-			// 
-			// InternalClipboard_checkBox
-			// 
-			this.InternalClipboard_checkBox.AutoSize = true;
-			this.InternalClipboard_checkBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.InternalClipboard_checkBox.Location = new System.Drawing.Point(6, 92);
-			this.InternalClipboard_checkBox.Name = "InternalClipboard_checkBox";
-			this.InternalClipboard_checkBox.Size = new System.Drawing.Size(270, 17);
-			this.InternalClipboard_checkBox.TabIndex = 6;
-			this.InternalClipboard_checkBox.Text = "Use \"internal\" clipboard when use custom paste key";
-			this.InternalClipboard_checkBox.UseVisualStyleBackColor = true;
+			this.groupBox2.Text = "Custom paste key";
 			// 
 			// PasteKeys_comboBox
 			// 
@@ -390,7 +348,6 @@
 			this.PasteKeys_comboBox.Name = "PasteKeys_comboBox";
 			this.PasteKeys_comboBox.Size = new System.Drawing.Size(138, 21);
 			this.PasteKeys_comboBox.TabIndex = 0;
-			this.PasteKeys_comboBox.SelectedIndexChanged += new System.EventHandler(this.PasteKeys_comboBox_SelectedIndexChanged);
 			// 
 			// PasteAlt_checkBox
 			// 
@@ -447,14 +404,13 @@
 			this.groupBox4.Controls.Add(this.Enabled_checkBox);
 			this.groupBox4.Controls.Add(this.ClearWhenPasteCtrlV_checkBox);
 			this.groupBox4.Controls.Add(this.groupBox2);
-			this.groupBox4.Controls.Add(this.ClearWhenExit_checkBox);
 			this.groupBox4.Controls.Add(this.groupBox1);
 			this.groupBox4.Controls.Add(this.CaptureOnTrayClick_checkBox);
 			this.groupBox4.Controls.Add(this.MultiScreen_checkBox);
 			this.groupBox4.Controls.Add(this.ClearWhenPasteShiftIns_checkBox);
 			this.groupBox4.Location = new System.Drawing.Point(11, 10);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(328, 491);
+			this.groupBox4.Size = new System.Drawing.Size(328, 420);
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Options";
@@ -469,7 +425,7 @@
             "24 bit per pixel",
             "16 bit per pixel",
             "8 bit per pixel"});
-			this.ReduceColors_comboBox.Location = new System.Drawing.Point(191, 179);
+			this.ReduceColors_comboBox.Location = new System.Drawing.Point(191, 156);
 			this.ReduceColors_comboBox.Name = "ReduceColors_comboBox";
 			this.ReduceColors_comboBox.Size = new System.Drawing.Size(123, 21);
 			this.ReduceColors_comboBox.TabIndex = 8;
@@ -477,7 +433,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(12, 182);
+			this.label5.Location = new System.Drawing.Point(12, 159);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(173, 13);
 			this.label5.TabIndex = 7;
@@ -490,7 +446,7 @@
 			this.groupBox3.Controls.Add(this.Stack_checkBox);
 			this.groupBox3.Controls.Add(this.ComposeVertically_radioButton);
 			this.groupBox3.Controls.Add(this.ComposeHorizontally_radioButton);
-			this.groupBox3.Location = new System.Drawing.Point(15, 404);
+			this.groupBox3.Location = new System.Drawing.Point(15, 335);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(299, 76);
 			this.groupBox3.TabIndex = 11;
@@ -541,21 +497,11 @@
 			this.Stack_checkBox.Text = "Stack";
 			this.Stack_checkBox.UseVisualStyleBackColor = true;
 			// 
-			// ClearClipboard_button
-			// 
-			this.ClearClipboard_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.ClearClipboard_button.Location = new System.Drawing.Point(10, 516);
-			this.ClearClipboard_button.Name = "ClearClipboard_button";
-			this.ClearClipboard_button.Size = new System.Drawing.Size(149, 23);
-			this.ClearClipboard_button.TabIndex = 3;
-			this.ClearClipboard_button.Text = "Clear clipboard";
-			this.ClearClipboard_button.UseVisualStyleBackColor = true;
-			this.ClearClipboard_button.Click += new System.EventHandler(this.ClearClipboard_ToolStripMenuItem_Click);
-			// 
 			// SaveClipboard_button
 			// 
+			this.SaveClipboard_button.Enabled = false;
 			this.SaveClipboard_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.SaveClipboard_button.Location = new System.Drawing.Point(189, 516);
+			this.SaveClipboard_button.Location = new System.Drawing.Point(190, 436);
 			this.SaveClipboard_button.Name = "SaveClipboard_button";
 			this.SaveClipboard_button.Size = new System.Drawing.Size(149, 23);
 			this.SaveClipboard_button.TabIndex = 4;
@@ -563,12 +509,24 @@
 			this.SaveClipboard_button.UseVisualStyleBackColor = true;
 			this.SaveClipboard_button.Click += new System.EventHandler(this.SaveClipboardAs_toolStripMenuItem_Click);
 			// 
+			// ClearClipboard_button
+			// 
+			this.ClearClipboard_button.Enabled = false;
+			this.ClearClipboard_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.ClearClipboard_button.Location = new System.Drawing.Point(11, 436);
+			this.ClearClipboard_button.Name = "ClearClipboard_button";
+			this.ClearClipboard_button.Size = new System.Drawing.Size(149, 23);
+			this.ClearClipboard_button.TabIndex = 3;
+			this.ClearClipboard_button.Text = "Clear clipboard";
+			this.ClearClipboard_button.UseVisualStyleBackColor = true;
+			this.ClearClipboard_button.Click += new System.EventHandler(this.ClearClipboard_ToolStripMenuItem_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(351, 548);
+			this.ClientSize = new System.Drawing.Size(351, 466);
 			this.Controls.Add(this.SaveClipboard_button);
 			this.Controls.Add(this.ClearClipboard_button);
 			this.Controls.Add(this.groupBox4);
@@ -611,7 +569,6 @@
 		private System.Windows.Forms.SaveFileDialog saveFileDialog;
 		private System.Windows.Forms.CheckBox Enabled_checkBox;
 		private System.Windows.Forms.CheckBox ClearWhenPasteCtrlV_checkBox;
-		private System.Windows.Forms.CheckBox ClearWhenExit_checkBox;
 		private System.Windows.Forms.ComboBox CaptureKeys_comboBox;
 		private System.Windows.Forms.CheckBox CaptureCtrl_checkBox;
 		private System.Windows.Forms.CheckBox CaptureAlt_checkBox;
@@ -624,7 +581,6 @@
 		private System.Windows.Forms.ToolStripMenuItem Disable_ToolStripMenuItem;
 		private System.Windows.Forms.RadioButton ComposeVertically_radioButton;
 		private System.Windows.Forms.RadioButton ComposeHorizontally_radioButton;
-		private System.Windows.Forms.CheckBox ClearWhenPasteCustom_checkBox;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.ComboBox PasteKeys_comboBox;
@@ -633,15 +589,14 @@
 		private System.Windows.Forms.CheckBox PasteShift_checkBox;
 		private System.Windows.Forms.CheckBox PreventProcessingPasteKey_checkBox;
 		private System.Windows.Forms.GroupBox groupBox4;
-		private System.Windows.Forms.CheckBox InternalClipboard_checkBox;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.NumericUpDown StackSize_numericUpDown;
 		private System.Windows.Forms.CheckBox Stack_checkBox;
-		private System.Windows.Forms.Button ClearClipboard_button;
 		private System.Windows.Forms.Button SaveClipboard_button;
 		private System.Windows.Forms.ComboBox ReduceColors_comboBox;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Button ClearClipboard_button;
 	}
 }
 

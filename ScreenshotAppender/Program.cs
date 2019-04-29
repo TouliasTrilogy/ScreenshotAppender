@@ -17,6 +17,8 @@ namespace ScreenshotAppender
 		[STAThread]
 		static void Main()
 		{
+			Application.ThreadException += Application_ThreadException;
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			//Handle about embed dll's
 			LoadResolver();
 			Application.EnableVisualStyles();
@@ -55,6 +57,31 @@ namespace ScreenshotAppender
 				}
 			}
 			return null;
+		}
+
+		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+		{
+			string fileName = String.Format("thread-{0:MMddyyyy-HHmmss-FFF}.log", DateTime.Now);
+			string exception = String.Format("{0}\r\n{1}\r\n{2}", e.Exception.Message, e.Exception.Source, e.Exception.StackTrace);
+			if (e.Exception.InnerException != null)
+			{
+				exception += String.Format("Inner exception:\r\n{0}\r\n{1}\r\n{2}\r\n", e.Exception.InnerException.Message, e.Exception.InnerException.Source, e.Exception.InnerException.StackTrace);
+			}
+			File.WriteAllText(fileName, exception);
+			MessageBox.Show($"Ooooops! {fileName}");
+		}
+
+		private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			string fileName = String.Format("domain-{0:MMddyyyy-HHmmss-FFF}.log", DateTime.Now);
+			Exception ex = (Exception)e.ExceptionObject;
+			string exception = String.Format("{0}\r\n{1}\r\n{2}", ex.Message, ex.Source, ex.StackTrace);
+			if (ex.InnerException != null)
+			{
+				exception += String.Format("Inner exception:\r\n{0}\r\n{1}\r\n{2}", ex.InnerException.Message, ex.InnerException.Source, ex.InnerException.StackTrace);
+			}
+			File.WriteAllText(fileName, exception);
+			MessageBox.Show($"Ooooops! {fileName}");
 		}
 	}
 }

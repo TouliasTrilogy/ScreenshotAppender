@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClipboardEx.cs" />
     <Compile Include="ClipboardService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -68,6 +67,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="InvokerEx.cs" />
+    <Compile Include="NotifyList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistryHelper.cs" />

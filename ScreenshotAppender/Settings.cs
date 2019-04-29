@@ -34,8 +34,6 @@ namespace ScreenshotAppender
 		public bool FirstRun;
 		public bool ClearOnPasteCtrlV;
 		public bool ClearOnPasteShiftInsert;
-		public bool ClearOnPasteCustom;
-		public bool ClearOnExit;
 		public bool CaptureOnTrayClick;
 		public bool MultiScreen;
 		public bool CaptureAlt;
@@ -49,20 +47,16 @@ namespace ScreenshotAppender
 		public bool PreventProcessingCaptureKey;
 		public bool PreventProcessingPasteKey;
 		public bool ComposeVertically;
-		public bool UseInternalClipboard;
 		public bool Stack;
 		public int StackSize;
 		public int ReduceColors;
-
 
 		public Settings()
 		{
 			FirstRun = true;
 			Enabled = true;
-			ClearOnExit = true;
 			ClearOnPasteCtrlV = true;
 			ClearOnPasteShiftInsert = true;
-			ClearOnPasteCustom = true;
 			CaptureOnTrayClick = true;
 			MultiScreen = false;
 			CaptureAlt = false;
@@ -76,7 +70,6 @@ namespace ScreenshotAppender
 			PreventProcessingCaptureKey = true;
 			PreventProcessingPasteKey = true;
 			ComposeVertically = true;
-			UseInternalClipboard = false;
 			Stack = false;
 			StackSize = 4;
 			ReduceColors = 0;
