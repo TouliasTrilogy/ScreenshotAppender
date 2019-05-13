@@ -61,8 +61,11 @@
 			this.PasteShift_checkBox = new System.Windows.Forms.CheckBox();
 			this.PreventProcessingPasteKey_checkBox = new System.Windows.Forms.CheckBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.label3 = new System.Windows.Forms.Label();
 			this.ReduceColors_comboBox = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
+			this.ImageSize_numericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.StackSize_numericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -73,6 +76,7 @@
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ImageSize_numericUpDown)).BeginInit();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.StackSize_numericUpDown)).BeginInit();
 			this.SuspendLayout();
@@ -242,7 +246,7 @@
 			this.CaptureOnTrayClick_checkBox.Location = new System.Drawing.Point(15, 111);
 			this.CaptureOnTrayClick_checkBox.Name = "CaptureOnTrayClick_checkBox";
 			this.CaptureOnTrayClick_checkBox.Size = new System.Drawing.Size(219, 17);
-			this.CaptureOnTrayClick_checkBox.TabIndex = 5;
+			this.CaptureOnTrayClick_checkBox.TabIndex = 4;
 			this.CaptureOnTrayClick_checkBox.Text = "Capture screen on single click in tray icon";
 			this.CaptureOnTrayClick_checkBox.UseVisualStyleBackColor = true;
 			// 
@@ -268,7 +272,7 @@
 			this.MultiScreen_checkBox.Location = new System.Drawing.Point(15, 134);
 			this.MultiScreen_checkBox.Name = "MultiScreen_checkBox";
 			this.MultiScreen_checkBox.Size = new System.Drawing.Size(175, 17);
-			this.MultiScreen_checkBox.TabIndex = 6;
+			this.MultiScreen_checkBox.TabIndex = 5;
 			this.MultiScreen_checkBox.Text = "Enable multiple sceeens support";
 			this.MultiScreen_checkBox.UseVisualStyleBackColor = true;
 			// 
@@ -318,10 +322,10 @@
 			this.groupBox1.Controls.Add(this.CaptureCtrl_checkBox);
 			this.groupBox1.Controls.Add(this.CaptureShift_checkBox);
 			this.groupBox1.Controls.Add(this.PreventProcessingCaptureKey_checkBox);
-			this.groupBox1.Location = new System.Drawing.Point(15, 183);
+			this.groupBox1.Location = new System.Drawing.Point(15, 210);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(299, 70);
-			this.groupBox1.TabIndex = 9;
+			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Screen capture key";
 			// 
@@ -332,10 +336,10 @@
 			this.groupBox2.Controls.Add(this.PasteCtrl_checkBox);
 			this.groupBox2.Controls.Add(this.PasteShift_checkBox);
 			this.groupBox2.Controls.Add(this.PreventProcessingPasteKey_checkBox);
-			this.groupBox2.Location = new System.Drawing.Point(15, 259);
+			this.groupBox2.Location = new System.Drawing.Point(15, 286);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(299, 70);
-			this.groupBox2.TabIndex = 10;
+			this.groupBox2.TabIndex = 12;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Custom paste key";
 			// 
@@ -397,8 +401,11 @@
 			// 
 			// groupBox4
 			// 
+			this.groupBox4.Controls.Add(this.label3);
 			this.groupBox4.Controls.Add(this.ReduceColors_comboBox);
+			this.groupBox4.Controls.Add(this.label1);
 			this.groupBox4.Controls.Add(this.label5);
+			this.groupBox4.Controls.Add(this.ImageSize_numericUpDown);
 			this.groupBox4.Controls.Add(this.groupBox3);
 			this.groupBox4.Controls.Add(this.StartWithWindows_checkBox);
 			this.groupBox4.Controls.Add(this.Enabled_checkBox);
@@ -410,10 +417,19 @@
 			this.groupBox4.Controls.Add(this.ClearWhenPasteShiftIns_checkBox);
 			this.groupBox4.Location = new System.Drawing.Point(11, 10);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(328, 420);
+			this.groupBox4.Size = new System.Drawing.Size(328, 448);
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Options";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(177, 187);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(15, 13);
+			this.label3.TabIndex = 10;
+			this.label3.Text = "%";
 			// 
 			// ReduceColors_comboBox
 			// 
@@ -423,12 +439,20 @@
 			this.ReduceColors_comboBox.Items.AddRange(new object[] {
             "Leave as is",
             "24 bit per pixel",
-            "16 bit per pixel",
-            "8 bit per pixel"});
+            "16 bit per pixel"});
 			this.ReduceColors_comboBox.Location = new System.Drawing.Point(191, 156);
 			this.ReduceColors_comboBox.Name = "ReduceColors_comboBox";
 			this.ReduceColors_comboBox.Size = new System.Drawing.Size(123, 21);
-			this.ReduceColors_comboBox.TabIndex = 8;
+			this.ReduceColors_comboBox.TabIndex = 7;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 186);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(92, 13);
+			this.label1.TabIndex = 8;
+			this.label1.Text = "Result image size:";
 			// 
 			// label5
 			// 
@@ -436,8 +460,27 @@
 			this.label5.Location = new System.Drawing.Point(12, 159);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(173, 13);
-			this.label5.TabIndex = 7;
+			this.label5.TabIndex = 6;
 			this.label5.Text = "Reduce colors of clipboard images:";
+			// 
+			// ImageSize_numericUpDown
+			// 
+			this.ImageSize_numericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.ImageSize_numericUpDown.Location = new System.Drawing.Point(110, 183);
+			this.ImageSize_numericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.ImageSize_numericUpDown.Name = "ImageSize_numericUpDown";
+			this.ImageSize_numericUpDown.Size = new System.Drawing.Size(61, 20);
+			this.ImageSize_numericUpDown.TabIndex = 9;
+			this.ImageSize_numericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.ImageSize_numericUpDown.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
 			// 
 			// groupBox3
 			// 
@@ -446,10 +489,10 @@
 			this.groupBox3.Controls.Add(this.Stack_checkBox);
 			this.groupBox3.Controls.Add(this.ComposeVertically_radioButton);
 			this.groupBox3.Controls.Add(this.ComposeHorizontally_radioButton);
-			this.groupBox3.Location = new System.Drawing.Point(15, 335);
+			this.groupBox3.Location = new System.Drawing.Point(15, 362);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(299, 76);
-			this.groupBox3.TabIndex = 11;
+			this.groupBox3.TabIndex = 13;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Image composign";
 			// 
@@ -501,10 +544,10 @@
 			// 
 			this.SaveClipboard_button.Enabled = false;
 			this.SaveClipboard_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.SaveClipboard_button.Location = new System.Drawing.Point(190, 436);
+			this.SaveClipboard_button.Location = new System.Drawing.Point(190, 473);
 			this.SaveClipboard_button.Name = "SaveClipboard_button";
 			this.SaveClipboard_button.Size = new System.Drawing.Size(149, 23);
-			this.SaveClipboard_button.TabIndex = 4;
+			this.SaveClipboard_button.TabIndex = 2;
 			this.SaveClipboard_button.Text = "Save clipboard as...";
 			this.SaveClipboard_button.UseVisualStyleBackColor = true;
 			this.SaveClipboard_button.Click += new System.EventHandler(this.SaveClipboardAs_toolStripMenuItem_Click);
@@ -513,10 +556,10 @@
 			// 
 			this.ClearClipboard_button.Enabled = false;
 			this.ClearClipboard_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.ClearClipboard_button.Location = new System.Drawing.Point(11, 436);
+			this.ClearClipboard_button.Location = new System.Drawing.Point(11, 473);
 			this.ClearClipboard_button.Name = "ClearClipboard_button";
 			this.ClearClipboard_button.Size = new System.Drawing.Size(149, 23);
-			this.ClearClipboard_button.TabIndex = 3;
+			this.ClearClipboard_button.TabIndex = 1;
 			this.ClearClipboard_button.Text = "Clear clipboard";
 			this.ClearClipboard_button.UseVisualStyleBackColor = true;
 			this.ClearClipboard_button.Click += new System.EventHandler(this.ClearClipboard_ToolStripMenuItem_Click);
@@ -526,7 +569,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(351, 466);
+			this.ClientSize = new System.Drawing.Size(351, 508);
 			this.Controls.Add(this.SaveClipboard_button);
 			this.Controls.Add(this.ClearClipboard_button);
 			this.Controls.Add(this.groupBox4);
@@ -549,6 +592,7 @@
 			this.groupBox2.PerformLayout();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ImageSize_numericUpDown)).EndInit();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.StackSize_numericUpDown)).EndInit();
@@ -597,6 +641,9 @@
 		private System.Windows.Forms.ComboBox ReduceColors_comboBox;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Button ClearClipboard_button;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.NumericUpDown ImageSize_numericUpDown;
 	}
 }
 

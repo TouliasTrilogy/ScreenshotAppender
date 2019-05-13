@@ -50,7 +50,7 @@ namespace ScreenshotAppender
 		public bool Stack;
 		public int StackSize;
 		public int ReduceColors;
-
+		public int ImageSize;
 		public Settings()
 		{
 			FirstRun = true;
@@ -73,6 +73,7 @@ namespace ScreenshotAppender
 			Stack = false;
 			StackSize = 4;
 			ReduceColors = 0;
+			ImageSize = 100;
 		}
 
 		private static string UserProfilePath

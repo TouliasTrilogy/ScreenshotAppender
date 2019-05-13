@@ -3,10 +3,13 @@ using MouseKeyboardActivityMonitor.WinApi;
 using System;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using SA = ScreenshotAppender.Properties.Resources;
 
@@ -59,6 +62,12 @@ namespace ScreenshotAppender
 				}
 				SaveClipboard_button.Enabled = ClearClipboard_button.Enabled = _images.Any();
 			});
+			if (_images.Count == 0)
+			{
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+				GC.Collect();
+			}
 		}
 
 		private void _settings_EnabledChanged(object sender, bool e)
@@ -118,9 +127,41 @@ namespace ScreenshotAppender
 		}
 
 
+		private bool MemoryOverload()
+		{
+			Process process = Process.GetCurrentProcess();
+			//Debug.WriteLine($"WorkingSet64: {process.WorkingSet64}\t\t{SizeSuffix(process.WorkingSet64)}");
+			//Return true if WorkingSet > 1 GB
+			return process.WorkingSet64 > 1073741824;
+		}
+
+		public static string SizeSuffix(long value)
+		{
+			string[] _sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+			if (value < 0) { return "-" + SizeSuffix(-value); }
+			if (value == 0) { return "0 bytes"; }
+			int mag = (int)Math.Log(value, 1024);
+			decimal adjustedSize = (decimal)value / (1L << (mag * 10));
+			return $"{adjustedSize:F2} {_sizeSuffixes[mag]}";
+		}
+
 		private Image ComposeImage()
 		{
 			Bitmap bitmap = null;
+			PixelFormat pixelFormat = PixelFormat.Format32bppArgb;
+			switch (_settings.ReduceColors)
+			{
+				case 1:
+					pixelFormat = PixelFormat.Format24bppRgb;
+					break;
+				case 2:
+					pixelFormat = PixelFormat.Format16bppRgb555;
+					break;
+				case 3:
+					pixelFormat = PixelFormat.Format8bppIndexed;
+					break;
+			}
+
 			if (_images.Any())
 			{
 				int width = 0;
@@ -138,7 +179,21 @@ namespace ScreenshotAppender
 						width = _images.Sum(item => item.Width);
 						height = _images[0].Height;
 					}
-					bitmap = new Bitmap(width, height);
+					try
+					{
+						bitmap = new Bitmap(width, height, pixelFormat);
+					}
+					catch (ArgumentException)
+					{
+						int imagesCount = _images.Count;
+						//This make sense for prevent processing images when error message displayed
+						_images.Clear();
+						this.Invoke((MethodInvoker)(() =>
+						{
+							MessageBox.Show($"Unable to compose {imagesCount} images to bitmap with size {width}x{height}. You may need to retake last screen capture again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0x40000);
+						}));
+						return null;
+					}
 					Graphics graphics = Graphics.FromImage(bitmap);
 					int counter = 0;
 					int positionX = 0;
@@ -181,7 +236,21 @@ namespace ScreenshotAppender
 						}
 					}
 					//Compose stack
-					bitmap = new Bitmap(width, height);
+					try
+					{
+						bitmap = new Bitmap(width, height, pixelFormat);
+					}
+					catch (ArgumentException)
+					{
+						int imagesCount = _images.Count;
+						//This make sense for prevent processing images when error message displayed
+						_images.Clear();
+						this.Invoke((MethodInvoker)(() =>
+						{
+							MessageBox.Show(this, $"Unable to compose {imagesCount} images to bitmap with size {width}x{height}. You may need to retake last screen capture again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0x40000);
+						}));
+						return null;
+					}
 					Graphics graphics = Graphics.FromImage(bitmap);
 					int counter = 0;
 					int currentRow = 0;
@@ -212,6 +281,10 @@ namespace ScreenshotAppender
 					}
 				}
 			}
+			bitmap = ResizeImage(bitmap, _settings.ImageSize);
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			GC.Collect();
 			return bitmap;
 		}
 
@@ -255,11 +328,55 @@ namespace ScreenshotAppender
 				if (_settings.CaptureShift && !e.Shift) { return; }
 				//Set handled state according to settings
 				e.Handled = _settings.PreventProcessingCaptureKey;
+				//For process handled event
+				Application.DoEvents();
+				if (MemoryOverload())
+				{
+					//This run in new thread for prevent block current thread
+					Task.Factory.StartNew(() =>
+					{
+						//Make sure all get event about we process capture key
+						Thread.Sleep(100);
+						//This run in new thread for prevent block current thread
+						this.Invoke((MethodInvoker)(() =>
+						{
+							MessageBox.Show(this, $"Warning! {_images.Count} images captured. Unable to capture more images. Clear clipboard before continue.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0x40000);
+						}));
+					});
+					return;
+				}
 				CaptureRoutine();
 				_lastImage = ComposeImage();
-				Clipboard.SetImage((Bitmap)_lastImage);
+				this.Invoke((MethodInvoker)(() =>
+				{
+					try
+					{
+						if (_lastImage != null)
+						{
+							Clipboard.SetDataObject(_lastImage, false, 5, 100);
+						}
+					}
+					catch
+					{
+						_images.Clear();
+						//This run in new thread for prevent block current thread
+						Task.Factory.StartNew(() =>
+						{
+							//Make sure all get event about we process capture key
+							Thread.Sleep(100);
+							this.Invoke((MethodInvoker)(() =>
+							{
+								MessageBox.Show(this, "Warning! Five attempts to write clipboard failed. You may need to retake last screen capture again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0x40000);
+							}));
+						});
+
+					}
+				}));
 			}
 		}
+
+
+
 
 		private void CleanTimerRoutine(object state)
 		{
@@ -366,6 +483,23 @@ namespace ScreenshotAppender
 			ClearClipboard_ToolStripMenuItem.Enabled = _images.Any();
 		}
 
+
+		private Bitmap ResizeImage(Bitmap original, int scale)
+		{
+			if (scale != 100)
+			{
+				Bitmap resized = new Bitmap((original.Width / 100) * _settings.ImageSize, (original.Height / 100) * scale);
+				Graphics graphics = Graphics.FromImage(resized);
+				graphics.DrawImage(original, new Rectangle(0, 0, resized.Width, resized.Height));
+				return resized;
+			}
+			else
+			{
+				return original;
+			}
+
+		}
+
 		private void SaveClipboardAs_toolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			//Save content to file
@@ -373,14 +507,14 @@ namespace ScreenshotAppender
 			{
 				if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
 				{
-					Image currentImage = ComposeImage();
+					Image currentImage = ResizeImage((Bitmap)ComposeImage(), _settings.ImageSize);
 					try
 					{
 						currentImage.Save(saveFileDialog.FileName, ImageFormat.Png);
 					}
 					catch (Exception ex)
 					{
-						MessageBox.Show(this, $"Unable to save file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(this, $"Unable to save file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, (MessageBoxOptions)0x40000);
 					}
 				}
 			}
@@ -419,7 +553,17 @@ namespace ScreenshotAppender
 			ComposeHorizontally_radioButton.Checked = !_settings.ComposeVertically;
 			Stack_checkBox.Checked = _settings.Stack;
 			StackSize_numericUpDown.Value = _settings.StackSize;
-			ReduceColors_comboBox.SelectedIndex = _settings.ReduceColors;
+			if (ReduceColors_comboBox.Items.Count - 1 >= _settings.ReduceColors)
+			{
+				ReduceColors_comboBox.SelectedIndex = _settings.ReduceColors;
+			}
+			else
+			{
+				//Old settings processed
+				ReduceColors_comboBox.SelectedIndex = 0;
+				_settings.ReduceColors = 0;
+			}
+			ImageSize_numericUpDown.Value = _settings.ImageSize;
 			//Set event handler for change settings. We not set in designer for prevent multiple settings write on start application
 			Enabled_checkBox.CheckedChanged += SettingsChanged;
 			ClearWhenPasteCtrlV_checkBox.CheckedChanged += SettingsChanged;
@@ -441,6 +585,7 @@ namespace ScreenshotAppender
 			Stack_checkBox.CheckedChanged += SettingsChanged;
 			StackSize_numericUpDown.ValueChanged += SettingsChanged;
 			ReduceColors_comboBox.SelectedIndexChanged += SettingsChanged;
+			ImageSize_numericUpDown.ValueChanged += SettingsChanged;
 		}
 
 		private void SettingsChanged(object sender, EventArgs e)
@@ -465,6 +610,7 @@ namespace ScreenshotAppender
 			_settings.Stack = Stack_checkBox.Checked;
 			_settings.StackSize = (int)StackSize_numericUpDown.Value;
 			_settings.ReduceColors = ReduceColors_comboBox.SelectedIndex;
+			_settings.ImageSize = (int)ImageSize_numericUpDown.Value;
 			_settings.Save();
 		}
 
